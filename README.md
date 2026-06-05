@@ -21,6 +21,11 @@ funzionali, è strutturato secondo i principi della **Clean Architecture** e del
 
 ## Esempio d'uso
 
+![Demo della CLI del Gestore delle Spese](docs/assets/cli-demo.svg)
+
+<details>
+<summary>Trascrizione testuale della sessione</summary>
+
 ```text
 $ gestore-spese
 Gestore Spese
@@ -39,6 +44,8 @@ Aggiunta con successo nuova Spesa: Data: 01/05/2025, Descrizione: 'spesa di test
 Report Mensile:
 Data: 2025-05, Importo: 830.41
 ```
+
+</details>
 
 ## Requisiti
 
