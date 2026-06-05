@@ -1,4 +1,10 @@
 # Gestore delle Spese Domestiche
+
+[![CI](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto1/actions/workflows/ci.yml/badge.svg)](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto1/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue)
+![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-green)
+
 ## Contesto del Progetto
 In un'epoca in cui il controllo delle spese personali e familiari è diventato cruciale per una gestione finanziaria sostenibile, un'applicazione semplice ma efficace può rappresentare un importante valore aggiunto per i consumatori. Il progetto di un gestore delle spese domestiche mira a fornire uno strumento utile e immediato per il monitoraggio delle transazioni economiche quotidiane, con un'interfaccia utente chiara e funzionale.
 
