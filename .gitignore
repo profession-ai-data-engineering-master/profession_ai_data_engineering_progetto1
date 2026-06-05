@@ -34,3 +34,6 @@ Thumbs.db
 
 # --- Jupyter ---
 .ipynb_checkpoints/
+
+# --- Documentazione (Sphinx) ---
+docs/_build/
