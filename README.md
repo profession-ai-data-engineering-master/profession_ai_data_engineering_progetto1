@@ -5,54 +5,129 @@
 ![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-## Contesto del Progetto
-In un'epoca in cui il controllo delle spese personali e familiari è diventato cruciale per una gestione finanziaria sostenibile, un'applicazione semplice ma efficace può rappresentare un importante valore aggiunto per i consumatori. Il progetto di un gestore delle spese domestiche mira a fornire uno strumento utile e immediato per il monitoraggio delle transazioni economiche quotidiane, con un'interfaccia utente chiara e funzionale.
+Applicazione da riga di comando per tracciare le spese personali, generare un
+report mensile e individuare le spese più rilevanti. I dati sono persistiti in
+un semplice file CSV.
 
-## Obiettivo del Progetto
-L'obiettivo è sviluppare un'applicazione in Python che consenta agli utenti di tracciare le loro spese, generare report mensili e identificare le spese più significative. Questo strumento fornirà una panoramica finanziaria trasparente, aiutando gli utenti a prendere decisioni consapevoli per migliorare la gestione del budget familiare.
+Il progetto nasce come esercizio di portfolio: oltre a soddisfare i requisiti
+funzionali, è strutturato secondo i principi della **Clean Architecture** e del
+**Domain-Driven Design**, con copertura di test, type checking statico e CI.
 
-### **Funzionalità Chiave**
-1. **Aggiunta di una transazione**: Gli utenti possono registrare facilmente ogni spesa, completando campi come data, descrizione e importo.
-2. **Report Mensile**: Generazione di un resoconto mensile che raggruppa le spese per anno e mese, fornendo una chiara visione delle transazioni effettuate nel periodo.
-3. **Top 10 Transazioni**: Visualizzazione delle 10 spese più importanti, utile per monitorare le voci di spesa più rilevanti.
+## Funzionalità
 
-## Valore Aggiunto
-L'applicazione offre diversi benefici agli utenti:
-- **Monitoraggio immediato**: Ogni transazione viene registrata in un file CSV, consentendo di tenere traccia in tempo reale delle spese quotidiane.
-- **Gestione consapevole del budget**: Il report mensile fornisce una visione aggregata delle spese, aiutando l'utente a comprendere meglio come e dove vengono spesi i propri soldi.
-- **Identificazione delle spese principali**: La funzione "Top 10" consente di individuare velocemente le spese di maggior impatto economico, favorendo il risparmio e una gestione più oculata delle finanze personali.
+- **Aggiungi una spesa** — data, descrizione e importo, salvati su CSV.
+- **Report mensile** — totale delle spese aggregato per anno/mese, in ordine di data decrescente.
+- **Top 10 spese** — le dieci spese di importo maggiore.
 
-## Descrizione delle Funzionalità
-### **Menu delle Operazioni**
-L'applicazione presenta un menu interattivo che offre all'utente tre opzioni principali:
-- [1] **Aggiungi una transazione**: L'utente può registrare una nuova spesa fornendo data, descrizione e importo. I dati vengono salvati in un file CSV, che funge da registro delle spese.
-- [2] **Report Mensile**: Questa opzione genera un resoconto totale delle transazioni, raggruppate per anno e mese, permettendo all'utente di avere un quadro complessivo delle spese nel corso del tempo.
-- [3] **Top 10 Transazioni**: L'utente può visualizzare le dieci spese più alte, ordinate per importo, ottenendo così informazioni utili su quali siano state le transazioni di maggior impatto economico.
+## Esempio d'uso
 
-### **Dettaglio delle Operazioni**
-1. **Aggiunta di una Transazione**:
-  - L'utente inserisce la data della transazione (formato GG/MM/AAAA), una breve descrizione e l'importo totale.
-  - Il dato immesso (es. "18/05/2024 Cena al ristorante 45") viene salvato in un file CSV e l'applicazione ritorna al menu principale.
+```text
+$ gestore-spese
+Gestore Spese
+Scegli un'opzione (inserisci la chiave):
+[1] Aggiungi una Spesa
+[2] Mostra Report Mensile
+[3] Mostra Top 10 delle Spese
+[esci] Esci dal programma
+> 1
+Inserisci la data della nuova spesa (dd/mm/yyyy): 01/05/2025
+Inserisci la descrizione della nuova spesa: spesa di test
+Inserisci l'importo della nuova spesa: 30.41
+Aggiunta con successo nuova Spesa: Data: 01/05/2025, Descrizione: 'spesa di test', Importo: 30.41
+...
+> 2
+Report Mensile:
+Data: 2025-05, Importo: 830.41
+```
 
-2. **Generazione del Report Mensile**:
-- L'utente seleziona questa opzione per visualizzare un riepilogo delle spese suddivise per anno e mese.
-- Il report viene visualizzato nel seguente formato:
-  2024-05 324
-  2024-05 123
-  2024-06 834
-- Questo fornisce una visione chiara delle spese nel tempo, agevolando il monitoraggio dei flussi di cassa mensili.
+## Requisiti
 
-3. **Top 10 Transazioni**:
-- L'applicazione visualizza le dieci transazioni con l'importo più elevato, includendo data, descrizione e importo. Ad esempio:
-  18/06/2023 Rata mutuo 1231
-  15/02/2021 Acquisto scooter 4323
-- Questa funzionalità aiuta l'utente a identificare le spese maggiori e a monitorare potenziali aree di risparmio.
+- Python **>= 3.10**
+- Nessuna dipendenza di runtime esterna (solo libreria standard).
 
-## Implementazione Tecnica
-L'applicazione sarà realizzata utilizzando Python e i dati saranno gestiti attraverso l'uso di file CSV, garantendo leggerezza e semplicità di utilizzo. La gestione delle operazioni avverrà tramite un menu interattivo che guiderà l'utente attraverso le varie opzioni.
+## Installazione
 
-### **Commenti e Documentazione**
-Il codice Python sarà ampiamente documentato, con commenti chiari che descrivono ogni blocco funzionale. Questo garantirà che sia facile da mantenere e migliorare nel tempo, in linea con gli standard di programmazione appresi durante il corso.
+```bash
+# clona il repository, poi:
+python -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+pip install -e .
+```
 
-Conclusione
-L'applicazione di gestione delle spese domestiche offre una soluzione semplice ma potente per il monitoraggio finanziario. Fornirà agli utenti gli strumenti per una gestione più consapevole delle spese e delle entrate, favorendo la trasparenza e l'efficienza nella pianificazione del budget personale o familiare.
+## Avvio
+
+```bash
+gestore-spese
+```
+
+In alternativa, senza installare il console script:
+
+```bash
+python -m gestore_spese.interfaces.cli.main
+```
+
+Le spese vengono salvate nel file `storico_spese.csv` nella cartella corrente.
+
+## Architettura
+
+Il codice è organizzato in quattro layer concentrici; le dipendenze puntano
+sempre verso il dominio (Dependency Inversion tramite classi astratte):
+
+```
+interfaces/      CLI (pattern Command) + composition root
+   │  dipende da
+application/     casi d'uso (Aggiungi / ReportMensile / Top10) + DTO
+   │  dipende da
+domain/          entità (Spesa), contratti repository, servizi  ← cuore, nessuna dipendenza
+   ▲  implementato da
+infrastructure/  persistenza CSV (datasource + repository)
+```
+
+- **`domain`** — la `Spesa` con le sue regole di validazione, i contratti astratti di repository e servizio. Non dipende da nessun altro layer.
+- **`application`** — i casi d'uso che orchestrano il dominio e il DTO del report mensile.
+- **`infrastructure`** — l'implementazione concreta della persistenza su CSV, dietro le astrazioni del dominio.
+- **`interfaces`** — la CLI: ogni operazione è un *Command* (pattern Command → aperto all'estensione, chiuso alla modifica) e `GestoreSpeseCli` fa da *composition root* cablando le dipendenze.
+
+Le scelte progettuali (DDD, SOLID, pattern adottati) sono documentate nel
+notebook di prototipazione: [`proto/`](proto/).
+
+## Struttura del progetto
+
+```
+src/gestore_spese/
+├── domain/
+│   ├── entities/          # AbstractSpesa, Spesa
+│   ├── repositories/      # AbstractSpesaRepository
+│   └── services/          # AbstractSpesaService, SpesaService
+├── application/
+│   ├── dtos/              # ReportMensileDto
+│   └── use_cases/         # AbstractUseCase, AggiungiSpesa/ReportMensile/Top10
+├── infrastructure/
+│   └── persistence/
+│       ├── datasources/   # SpesaDataSourceCsv
+│       └── repositories/  # SpesaRepository
+└── interfaces/
+    └── cli/               # commands/, main.py (GestoreSpeseCli + entry point)
+tests/                     # suite pytest, speculare a src/
+proto/                     # notebook prototipale (design doc)
+docs/                      # traccia del progetto
+```
+
+## Sviluppo
+
+Installa le dipendenze di sviluppo ed esegui i controlli di qualità:
+
+```bash
+pip install -e ".[dev]"
+
+ruff check .             # lint
+ruff format --check .    # formattazione
+mypy src                 # type checking statico (strict)
+pytest                   # test + coverage (soglia 90%)
+```
+
+Gli stessi controlli girano in **CI** su GitHub Actions per Python 3.10, 3.11 e 3.12.
+
+## Licenza
+
+Distribuito con licenza [MIT](LICENSE).
