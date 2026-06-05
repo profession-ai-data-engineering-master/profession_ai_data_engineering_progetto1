@@ -23,6 +23,11 @@ classifiers = [
 ]
 dependencies = []
 
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.6",
+]
+
 [project.scripts]
 gestore-spese = "gestore_spese.interfaces.cli.main:main"
 
@@ -31,3 +36,19 @@ Repository = "https://github.com/profession-ai-data-engineering-master/professio
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/gestore_spese"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+src = ["src", "tests"]
+# Il notebook prototipale e il suo export auto-generato non seguono lo
+# stile di produzione: vengono esclusi dal lint/format.
+extend-exclude = ["proto"]
+
+[tool.ruff.lint]
+# E/W pycodestyle, F pyflakes, I isort, UP pyupgrade, B bugbear, SIM simplify
+select = ["E", "W", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
