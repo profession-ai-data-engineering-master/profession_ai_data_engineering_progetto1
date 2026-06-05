@@ -4,6 +4,7 @@
 ![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue)
 ![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-green)
+[![Docs](https://img.shields.io/badge/docs-online-8a2be2)](https://profession-ai-data-engineering-master.github.io/profession_ai_data_engineering_progetto1/)
 
 Applicazione da riga di comando per tracciare le spese personali, generare un
 report mensile e individuare le spese più rilevanti. I dati sono persistiti in
@@ -134,6 +135,21 @@ pytest                   # test + coverage (soglia 90%)
 ```
 
 Gli stessi controlli girano in **CI** su GitHub Actions per Python 3.10, 3.11 e 3.12.
+
+## Documentazione
+
+La documentazione API è generata da Sphinx (dalle docstring reStructuredText) ed è
+pubblicata su **GitHub Pages**:
+
+🔗 https://profession-ai-data-engineering-master.github.io/profession_ai_data_engineering_progetto1/
+
+Per generarla in locale:
+
+```bash
+pip install -e ".[dev]"
+sphinx-build -b html docs docs/_build/html
+# apri docs/_build/html/index.html
+```
 
 ## Licenza
 
