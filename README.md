@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto1/actions/workflows/ci.yml/badge.svg)](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto1/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue)
-![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)
+[![codecov](https://codecov.io/gh/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto1/branch/main/graph/badge.svg)](https://codecov.io/gh/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto1)
 ![License](https://img.shields.io/badge/license-MIT-green)
 [![Docs](https://img.shields.io/badge/docs-online-8a2be2)](https://profession-ai-data-engineering-master.github.io/profession_ai_data_engineering_progetto1/)
 

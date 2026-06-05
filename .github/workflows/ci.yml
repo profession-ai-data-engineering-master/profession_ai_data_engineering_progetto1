@@ -45,3 +45,12 @@ jobs:
 
       - name: Pytest (con coverage)
         run: pytest
+
+      # Upload della coverage su Codecov da un solo job della matrice
+      # (evita upload duplicati). Repo pubblico: upload tokenless.
+      - name: Upload coverage su Codecov
+        if: matrix.python-version == '3.12'
+        uses: codecov/codecov-action@v5
+        with:
+          files: ./coverage.xml
+          fail_ci_if_error: false
