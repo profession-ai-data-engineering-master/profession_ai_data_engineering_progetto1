@@ -27,6 +27,8 @@ dependencies = []
 dev = [
     "ruff>=0.6",
     "mypy>=1.11",
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
 ]
 
 [project.scripts]
@@ -60,4 +62,12 @@ strict = true
 warn_unused_configs = true
 show_error_codes = true
 pretty = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.coverage.run]
+source = ["gestore_spese"]
+branch = true
 
