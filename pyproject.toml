@@ -26,6 +26,7 @@ dependencies = []
 [project.optional-dependencies]
 dev = [
     "ruff>=0.6",
+    "mypy>=1.11",
 ]
 
 [project.scripts]
@@ -51,4 +52,12 @@ select = ["E", "W", "F", "I", "UP", "B", "SIM"]
 
 [tool.ruff.format]
 docstring-code-format = true
+
+[tool.mypy]
+python_version = "3.10"
+files = ["src"]
+strict = true
+warn_unused_configs = true
+show_error_codes = true
+pretty = true
 
