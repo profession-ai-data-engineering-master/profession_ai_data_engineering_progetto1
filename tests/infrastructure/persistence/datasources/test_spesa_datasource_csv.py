@@ -92,6 +92,20 @@ class TestSpesaDataSourceCsv(unittest.TestCase):
         mock_file.assert_called_once_with("storico_spese.csv", "a", newline="", encoding="utf-8")
         writer.writerow.assert_called_once_with([spesa.data, spesa.descrizione, spesa.importo])
 
+    @patch(f"{MODULE}.open", new_callable=mock_open)
+    def test_ottieni_tutte_le_spese_file_mancante(self, _mock_file):
+        """Con sorgente assente, la lettura ritorna una lista vuota.
+
+        Questo caso, nel notebook prototipale, era coperto da un test con nome
+        DUPLICATO (``test_ottieni_tutte_le_spese_file_mancante``) sovrascritto
+        dalla definizione successiva: di fatto non veniva mai eseguito.
+        """
+        with patch.object(
+            SpesaDataSourceCsv, "_verifica_inizializzazione_sorgente", return_value=False
+        ):
+            result = self._ds.ottieni_tutte_le_spese()
+        self.assertEqual(result, [])
+
     @patch(f"{MODULE}.csv.reader")
     @patch(f"{MODULE}.open", new_callable=mock_open)
     def test_ottieni_tutte_le_spese_file_presente(self, mock_file, mock_csv_reader):
