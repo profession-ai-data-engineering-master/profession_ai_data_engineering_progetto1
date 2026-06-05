@@ -12,6 +12,14 @@
 #     proto/programmazione-con-python-progetto1.ipynb --output _notebook_readable
 # =====================================================================
 
+# # Nota di lettura
+# Questo notebook e' il prototipo / relazione progettuale del Gestore delle
+# Spese Domestiche: documenta ragionamento e scelte di design (Clean
+# Architecture, DDD, SOLID, pattern Command) e i test inline di prototipazione.
+# Il codice di produzione vive in src/gestore_spese/ (vedi README): ogni blocco
+# annotato con `# @title src/...` e' stato spostato nel modulo corrispondente,
+# con i bugfix tracciati nelle issue. La fonte di verita' e' src/ + tests/.
+
 # # Gestore delle Spese Domestiche
 # ## Contesto del Progetto
 # In un'epoca in cui il controllo delle spese personali e familiari è diventato cruciale per una gestione finanziaria sostenibile, un'applicazione semplice ma efficace può rappresentare un importante valore aggiunto per i consumatori. Il progetto di un gestore delle spese domestiche mira a fornire uno strumento utile e immediato per il monitoraggio delle transazioni economiche quotidiane, con un'interfaccia utente chiara e funzionale.
