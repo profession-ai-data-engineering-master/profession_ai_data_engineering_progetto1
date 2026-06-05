@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="670" viewBox="0 0 780 670" font-family="'JetBrains Mono','Fira Code','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="13">
+  <style>
+    text { fill: #cdd6f4; }
+    .grn { fill: #a6e3a1; }
+    .blu { fill: #89b4fa; }
+  </style>
+
+  <!-- finestra del terminale -->
+  <rect x="0" y="0" width="780" height="670" rx="10" fill="#1e1e2e"/>
+  <rect x="0" y="0" width="780" height="40" rx="10" fill="#313244"/>
+  <rect x="0" y="20" width="780" height="20" fill="#313244"/>
+  <circle cx="22" cy="20" r="6" fill="#f38ba8"/>
+  <circle cx="44" cy="20" r="6" fill="#f9e2af"/>
+  <circle cx="66" cy="20" r="6" fill="#a6e3a1"/>
+  <text x="390" y="25" text-anchor="middle" fill="#9399b2" font-size="12">gestore-spese</text>
+
+  <!-- sessione -->
+  <text x="20" y="64"><tspan class="grn">$ </tspan>gestore-spese</text>
+  <text x="20" y="84" class="blu">Gestore Spese</text>
+  <text x="20" y="104">Scegli un'opzione (inserisci la chiave):</text>
+  <text x="20" y="124">[1] Aggiungi una Spesa</text>
+  <text x="20" y="144">[2] Mostra Report Mensile</text>
+  <text x="20" y="164">[3] Mostra Top 10 delle Spese</text>
+  <text x="20" y="184">[esci] Esci dal programma</text>
+  <text x="20" y="204"><tspan class="grn">&gt; </tspan>1</text>
+  <text x="20" y="224">Inserisci la data della nuova spesa (dd/mm/yyyy): 18/06/2023</text>
+  <text x="20" y="244">Inserisci la descrizione della nuova spesa: rata mutuo</text>
+  <text x="20" y="264">Inserisci l'importo della nuova spesa: 1231</text>
+  <text x="20" y="284">Aggiunta con successo nuova Spesa: Data: 18/06/2023, Descrizione: 'rata mutuo', Importo: 1231.0</text>
+  <text x="20" y="324">Scegli un'opzione (inserisci la chiave):</text>
+  <text x="20" y="344">[1] Aggiungi una Spesa</text>
+  <text x="20" y="364">[2] Mostra Report Mensile</text>
+  <text x="20" y="384">[3] Mostra Top 10 delle Spese</text>
+  <text x="20" y="404">[esci] Esci dal programma</text>
+  <text x="20" y="424"><tspan class="grn">&gt; </tspan>2</text>
+  <text x="20" y="444" class="blu">Report Mensile:</text>
+  <text x="20" y="464">Data: 2023-06, Importo: 1231.0</text>
+  <text x="20" y="504">Scegli un'opzione (inserisci la chiave):</text>
+  <text x="20" y="524">[1] Aggiungi una Spesa</text>
+  <text x="20" y="544">[2] Mostra Report Mensile</text>
+  <text x="20" y="564">[3] Mostra Top 10 delle Spese</text>
+  <text x="20" y="584">[esci] Esci dal programma</text>
+  <text x="20" y="604"><tspan class="grn">&gt; </tspan>esci</text>
+  <text x="20" y="624">Grazie e arrivederci!</text>
+</svg>
