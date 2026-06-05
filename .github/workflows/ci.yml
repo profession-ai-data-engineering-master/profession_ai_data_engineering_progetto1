@@ -47,10 +47,11 @@ jobs:
         run: pytest
 
       # Upload della coverage su Codecov da un solo job della matrice
-      # (evita upload duplicati). Repo pubblico: upload tokenless.
+      # (evita upload duplicati). Token richiesto perche' il branch e' protetto.
       - name: Upload coverage su Codecov
         if: matrix.python-version == '3.12'
         uses: codecov/codecov-action@v5
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage.xml
           fail_ci_if_error: false
