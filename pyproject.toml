@@ -65,9 +65,20 @@ pretty = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-ra"
+addopts = "-ra --cov=gestore_spese --cov-report=term-missing --cov-report=xml --cov-fail-under=90"
 
 [tool.coverage.run]
 source = ["gestore_spese"]
 branch = true
+# Entry point interattivo + composition root: avviato da __main__, non
+# adatto allo unit test (orchestrazione/IO). Escluso dalla misura.
+omit = ["*/interfaces/cli/main.py"]
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+]
 
