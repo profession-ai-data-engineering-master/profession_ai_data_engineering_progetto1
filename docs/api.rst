@@ -51,6 +51,14 @@ Application
    :members:
    :show-inheritance:
 
+.. automodule:: gestore_spese.application.ports.abstract_reporting_provider
+   :members:
+   :show-inheritance:
+
+.. automodule:: gestore_spese.application.reporting.in_memory_reporting_provider
+   :members:
+   :show-inheritance:
+
 Infrastructure
 --------------
 
@@ -63,6 +71,14 @@ Infrastructure
    :show-inheritance:
 
 .. automodule:: gestore_spese.infrastructure.persistence.repositories.spesa_repository
+   :members:
+   :show-inheritance:
+
+.. automodule:: gestore_spese.infrastructure.reporting.duckdb_reporting_provider
+   :members:
+   :show-inheritance:
+
+.. automodule:: gestore_spese.infrastructure.reporting.reporting_provider_factory
    :members:
    :show-inheritance:
 

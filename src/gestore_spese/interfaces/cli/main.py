@@ -23,6 +23,9 @@ from gestore_spese.infrastructure.persistence.datasources.spesa_datasource_csv i
 from gestore_spese.infrastructure.persistence.repositories.spesa_repository import (
     SpesaRepository,
 )
+from gestore_spese.infrastructure.reporting.reporting_provider_factory import (
+    crea_reporting_provider,
+)
 from gestore_spese.interfaces.cli.commands.abstract_command import AbstractCommand
 from gestore_spese.interfaces.cli.commands.aggiungi_spesa_command import (
     AggiungiSpesaCommand,
@@ -52,6 +55,9 @@ class GestoreSpeseCli:
     Funge da *composition root*: costruisce la catena di dipendenze
     (datasource -> repository -> service -> casi d'uso -> comandi) e guida
     l'utente attraverso un menu interattivo.
+
+    Il motore di reporting (in-memory di default, oppure DuckDB/SQL) è scelto
+    qui dalla factory in base alla variabile d'ambiente ``GESTORE_SPESE_ENGINE``.
     """
 
     def __init__(self) -> None:
@@ -59,9 +65,13 @@ class GestoreSpeseCli:
         repository = SpesaRepository(datasource)
         service = SpesaService(repository)
 
+        # Motore di reporting intercambiabile: la scrittura resta sempre su CSV,
+        # cambia solo dove avviene l'aggregazione in lettura (Python vs SQL).
+        reporting_provider = crea_reporting_provider(service, datasource.filepath)
+
         aggiungi_command = AggiungiSpesaCommand(AggiungiSpesaUseCase(service))
-        report_command = ReportMensileCommand(ReportMensileUseCase(service))
-        top10_command = Top10SpeseCommand(Top10SpeseUseCase(service))
+        report_command = ReportMensileCommand(ReportMensileUseCase(reporting_provider))
+        top10_command = Top10SpeseCommand(Top10SpeseUseCase(reporting_provider))
 
         # Una voce con comando None rappresenta l'uscita: nessun confronto
         # speciale su stringhe, basta riconoscere il comando assente.

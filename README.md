@@ -51,7 +51,9 @@ Data: 2025-05, Importo: 830.41
 ## Requisiti
 
 - Python **>= 3.10**
-- Nessuna dipendenza di runtime esterna (solo libreria standard).
+- Nessuna dipendenza di runtime esterna per il funzionamento di base (solo
+  libreria standard). Il motore di reporting SQL è **opzionale** (extra
+  `analytics`, basato su DuckDB) — vedi [Motore di reporting](#motore-di-reporting-in-memory-vs-sql).
 
 ## Installazione
 
@@ -95,6 +97,7 @@ infrastructure/  persistenza CSV (datasource + repository)
 - **`application`** — i casi d'uso che orchestrano il dominio e il DTO del report mensile.
 - **`infrastructure`** — l'implementazione concreta della persistenza su CSV, dietro le astrazioni del dominio.
 - **`interfaces`** — la CLI: ogni operazione è un *Command* (pattern Command → aperto all'estensione, chiuso alla modifica) e `GestoreSpeseCli` fa da *composition root* cablando le dipendenze.
+- **Reporting intercambiabile** — i report di sola lettura passano per la porta `AbstractReportingProvider`, con due implementazioni (Python in-memory di default, DuckDB/SQL opzionale) selezionabili a runtime. Vedi [Motore di reporting](#motore-di-reporting-in-memory-vs-sql).
 
 Le scelte progettuali (DDD, SOLID, pattern adottati) sono descritte nelle
 docstring dei moduli, consultabili nella [documentazione API](#documentazione).
@@ -109,16 +112,49 @@ src/gestore_spese/
 │   └── services/          # AbstractSpesaService, SpesaService
 ├── application/
 │   ├── dtos/              # ReportMensileDto
+│   ├── ports/             # AbstractReportingProvider (porta di reporting)
+│   ├── reporting/         # InMemoryReportingProvider (motore in-memory, default)
 │   └── use_cases/         # AbstractUseCase, AggiungiSpesa/ReportMensile/Top10
 ├── infrastructure/
-│   └── persistence/
-│       ├── datasources/   # SpesaDataSourceCsv
-│       └── repositories/  # SpesaRepository
+│   ├── persistence/
+│   │   ├── datasources/   # SpesaDataSourceCsv
+│   │   └── repositories/  # SpesaRepository
+│   └── reporting/         # DuckDbReportingProvider + factory di selezione motore
 └── interfaces/
     └── cli/               # commands/, main.py (GestoreSpeseCli + entry point)
 tests/                     # suite pytest, speculare a src/
 docs/                      # traccia del progetto
 ```
+
+## Motore di reporting (in-memory vs SQL)
+
+I report di sola lettura (*Report Mensile* e *Top 10*) possono essere calcolati
+con due motori intercambiabili dietro la stessa astrazione
+(`AbstractReportingProvider`):
+
+- **in-memory (default)** — l'aggregazione avviene in Python; nessuna dipendenza
+  esterna;
+- **DuckDB / SQL** — l'aggregazione viene *spinta* nel motore dati (*push-down*)
+  ed espressa in SQL (`GROUP BY`/`SUM`, `ORDER BY`/`LIMIT`) leggendo
+  direttamente il file CSV.
+
+> ⚠️ **Onestà intellettuale.** Su un CSV di spese domestiche il volume è minimo:
+> il motore SQL **non** porta vantaggi di performance (anzi, può essere
+> marginalmente più lento per l'overhead del motore). Non è un'ottimizzazione: è
+> una dimostrazione del *pattern* data-engineering del push-down e di come la
+> *Dependency Inversion* permetta di scambiare il motore di calcolo senza toccare
+> i layer superiori. L'output dei due motori è identico.
+
+Per usare il motore SQL, installa l'extra e imposta la variabile d'ambiente:
+
+```bash
+pip install -e ".[analytics]"            # aggiunge duckdb
+GESTORE_SPESE_ENGINE=duckdb gestore-spese
+```
+
+Senza l'extra (o con la variabile non impostata) si usa il motore in-memory. Se
+richiedi `duckdb` ma l'extra non è installato, l'app avvisa e ricade
+automaticamente sull'in-memory.
 
 ## Sviluppo
 
