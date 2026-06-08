@@ -96,8 +96,8 @@ infrastructure/  persistenza CSV (datasource + repository)
 - **`infrastructure`** — l'implementazione concreta della persistenza su CSV, dietro le astrazioni del dominio.
 - **`interfaces`** — la CLI: ogni operazione è un *Command* (pattern Command → aperto all'estensione, chiuso alla modifica) e `GestoreSpeseCli` fa da *composition root* cablando le dipendenze.
 
-Le scelte progettuali (DDD, SOLID, pattern adottati) sono documentate nel
-notebook di prototipazione: [`proto/`](proto/).
+Le scelte progettuali (DDD, SOLID, pattern adottati) sono descritte nelle
+docstring dei moduli, consultabili nella [documentazione API](#documentazione).
 
 ## Struttura del progetto
 
@@ -117,7 +117,6 @@ src/gestore_spese/
 └── interfaces/
     └── cli/               # commands/, main.py (GestoreSpeseCli + entry point)
 tests/                     # suite pytest, speculare a src/
-proto/                     # notebook prototipale (design doc)
 docs/                      # traccia del progetto
 ```
 

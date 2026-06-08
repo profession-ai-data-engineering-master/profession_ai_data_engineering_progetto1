@@ -96,7 +96,7 @@ class TestSpesaDataSourceCsv(unittest.TestCase):
     def test_ottieni_tutte_le_spese_file_mancante(self, _mock_file):
         """Con sorgente assente, la lettura ritorna una lista vuota.
 
-        Questo caso, nel notebook prototipale, era coperto da un test con nome
+        Questo caso, nel prototipo originale, era coperto da un test con nome
         DUPLICATO (``test_ottieni_tutte_le_spese_file_mancante``) sovrascritto
         dalla definizione successiva: di fatto non veniva mai eseguito.
         """
