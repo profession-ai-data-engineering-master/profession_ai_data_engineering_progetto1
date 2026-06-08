@@ -1,4 +1,4 @@
-"""Test dell'entita' di dominio Spesa."""
+"""Test dell'entità di dominio Spesa."""
 
 import unittest
 from datetime import datetime
@@ -104,7 +104,7 @@ class TestSpesa(unittest.TestCase):
         self.assertFalse(self._spesa == 42)
 
     def test_hashable(self):
-        """La spesa e' hashable e coerente con __eq__ (bugfix #6)."""
+        """La spesa è hashable e coerente con __eq__ (bugfix #6)."""
         gemella = Spesa(self._data, self._descrizione, self._importo)
         self.assertEqual(hash(self._spesa), hash(gemella))
         self.assertIn(self._spesa, {gemella})

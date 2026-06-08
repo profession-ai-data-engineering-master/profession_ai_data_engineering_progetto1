@@ -1,4 +1,4 @@
-"""Entita' di dominio."""
+"""Entità di dominio."""
 
 from gestore_spese.domain.entities.abstract_spesa import AbstractSpesa
 from gestore_spese.domain.entities.spesa import Spesa

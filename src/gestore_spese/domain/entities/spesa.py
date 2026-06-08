@@ -1,4 +1,4 @@
-"""Entita' di dominio Spesa."""
+"""Entità di dominio Spesa."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from gestore_spese.domain.entities.abstract_spesa import AbstractSpesa
 class Spesa(AbstractSpesa):
     """Rappresenta una spesa, implementando il contratto :class:`AbstractSpesa`.
 
-    Le regole di business sono applicate nei setter: una spesa non puo' avere
+    Le regole di business sono applicate nei setter: una spesa non può avere
     una data assente, una descrizione troppo corta o un importo non positivo.
     """
 
@@ -33,10 +33,10 @@ class Spesa(AbstractSpesa):
         """Imposta la data della spesa.
 
         :param datetime data: nuova data della spesa
-        :raises TypeError: se la data e' None o non e' di tipo datetime
+        :raises TypeError: se la data è None o non è di tipo datetime
         """
         if data is None or not isinstance(data, datetime):
-            raise TypeError("La data deve essere di tipo datetime e non puo' essere None")
+            raise TypeError("La data deve essere di tipo datetime e non può essere None")
         self._data = data
 
     @property
@@ -53,7 +53,7 @@ class Spesa(AbstractSpesa):
         """Imposta la descrizione della spesa.
 
         :param str descrizione: nuova descrizione della spesa
-        :raises TypeError: se la descrizione non e' di tipo str
+        :raises TypeError: se la descrizione non è di tipo str
         :raises ValueError: se la descrizione ha meno di 3 caratteri non-spazio
         """
         if descrizione is None or not isinstance(descrizione, str):
@@ -76,8 +76,8 @@ class Spesa(AbstractSpesa):
         """Imposta l'importo della spesa.
 
         :param float importo: nuovo importo della spesa
-        :raises TypeError: se l'importo non e' di tipo numerico
-        :raises ValueError: se l'importo e' minore o uguale a 0
+        :raises TypeError: se l'importo non è di tipo numerico
+        :raises ValueError: se l'importo è minore o uguale a 0
         """
         if importo is None or not isinstance(importo, (int, float)):
             raise TypeError("L'importo deve essere di tipo numerico")

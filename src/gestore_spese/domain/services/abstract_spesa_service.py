@@ -10,7 +10,7 @@ from gestore_spese.domain.entities.abstract_spesa import AbstractSpesa
 class AbstractSpesaService(ABC):
     """Contratto del servizio che coordina la logica di dominio sulle spese.
 
-    Incapsula la logica di business che puo' coinvolgere piu' entita',
+    Incapsula la logica di business che può coinvolgere più entità,
     mediando l'accesso al repository.
     """
 

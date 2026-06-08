@@ -13,7 +13,7 @@ OutputT = TypeVar("OutputT")
 class AbstractUseCase(ABC, Generic[InputT, OutputT]):
     """Contratto generico di un caso d'uso: trasforma un input in un output.
 
-    Il tipo dell'input e dell'output sono parametrici, cosi' ogni caso d'uso
+    Il tipo dell'input e dell'output sono parametrici, così ogni caso d'uso
     dichiara con precisione cosa riceve e cosa restituisce.
     """
 

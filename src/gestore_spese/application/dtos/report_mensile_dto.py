@@ -34,10 +34,10 @@ class ReportMensileDto(AbstractReportMensileDto):
         """Imposta la data del report, normalizzandola al primo del mese.
 
         :param datetime data: nuova data del report
-        :raises TypeError: se la data e' None o non e' di tipo datetime
+        :raises TypeError: se la data è None o non è di tipo datetime
         """
         if data is None or not isinstance(data, datetime):
-            raise TypeError("La data deve essere di tipo datetime e non puo' essere None")
+            raise TypeError("La data deve essere di tipo datetime e non può essere None")
         self._data = datetime(data.year, data.month, 1)
 
     @property
@@ -54,8 +54,8 @@ class ReportMensileDto(AbstractReportMensileDto):
         """Imposta l'importo totale del report.
 
         :param float importo: nuovo importo del report
-        :raises TypeError: se l'importo non e' di tipo numerico
-        :raises ValueError: se l'importo e' minore o uguale a 0
+        :raises TypeError: se l'importo non è di tipo numerico
+        :raises ValueError: se l'importo è minore o uguale a 0
         """
         if importo is None or not isinstance(importo, (int, float)):
             raise TypeError("L'importo deve essere di tipo numerico")

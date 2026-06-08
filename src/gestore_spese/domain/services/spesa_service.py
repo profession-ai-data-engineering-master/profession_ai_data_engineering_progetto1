@@ -13,8 +13,8 @@ class SpesaService(AbstractSpesaService):
     """Implementa :class:`AbstractSpesaService` delegando al repository.
 
     Dipende dall'astrazione :class:`AbstractSpesaRepository` (Dependency
-    Inversion): in questo dominio la logica e' semplice, ma il servizio
-    fornisce il punto di estensione per regole che coinvolgano piu' entita'.
+    Inversion): in questo dominio la logica è semplice, ma il servizio
+    fornisce il punto di estensione per regole che coinvolgano più entità.
     """
 
     def __init__(self, repository: AbstractSpesaRepository) -> None:

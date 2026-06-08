@@ -27,9 +27,9 @@ class SpesaDataSourceCsv(AbstractSpesaDataSource):
         self._filepath = filepath
 
     def _verifica_inizializzazione_sorgente(self) -> bool:
-        """Indica se il file esiste ed e' gia' inizializzato (non vuoto).
+        """Indica se il file esiste ed è già inizializzato (non vuoto).
 
-        :return: True se la sorgente esiste ed e' inizializzata, altrimenti False
+        :return: True se la sorgente esiste ed è inizializzata, altrimenti False
         :rtype: bool
         """
         return path.exists(self._filepath) and path.getsize(self._filepath) > 0

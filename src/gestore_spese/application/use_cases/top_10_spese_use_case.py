@@ -8,7 +8,7 @@ from gestore_spese.domain.services.abstract_spesa_service import AbstractSpesaSe
 
 
 class Top10SpeseUseCase(AbstractUseCase[None, list[AbstractSpesa]]):
-    """Restituisce le 10 spese con l'importo piu' alto."""
+    """Restituisce le 10 spese con l'importo più alto."""
 
     def __init__(self, service: AbstractSpesaService) -> None:
         self._service = service
