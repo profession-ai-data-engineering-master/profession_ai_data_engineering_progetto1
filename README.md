@@ -1,4 +1,6 @@
-# Gestore delle Spese Domestiche
+# Household Expense Manager
+
+📖 **English** · [Italiano](README.it.md)
 
 [![CI](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto1/actions/workflows/ci.yml/badge.svg)](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto1/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue)
@@ -6,26 +8,28 @@
 ![License](https://img.shields.io/badge/license-MIT-green)
 [![Docs](https://img.shields.io/badge/docs-online-8a2be2)](https://profession-ai-data-engineering-master.github.io/profession_ai_data_engineering_progetto1/)
 
-Applicazione da riga di comando per tracciare le spese personali, generare un
-report mensile e individuare le spese più rilevanti. I dati sono persistiti in
-un semplice file CSV.
+A command-line application to track personal expenses, produce a monthly report
+and surface the most significant spendings. Data is persisted to a simple CSV
+file.
 
-Il progetto nasce come esercizio di portfolio: oltre a soddisfare i requisiti
-funzionali, è strutturato secondo i principi della **Clean Architecture** e del
-**Domain-Driven Design**, con copertura di test, type checking statico e CI.
+The project was built as a portfolio exercise: beyond meeting the functional
+requirements, it is structured around the principles of **Clean Architecture**
+and **Domain-Driven Design**, with test coverage, static type checking and CI.
 
-## Funzionalità
+> The interactive CLI is in Italian (the application's user-facing language).
 
-- **Aggiungi una spesa** — data, descrizione e importo, salvati su CSV.
-- **Report mensile** — totale delle spese aggregato per anno/mese, in ordine di data decrescente.
-- **Top 10 spese** — le dieci spese di importo maggiore.
+## Features
 
-## Esempio d'uso
+- **Add an expense** — date, description and amount, saved to CSV.
+- **Monthly report** — total spending aggregated by year/month, in descending date order.
+- **Top 10 expenses** — the ten largest expenses by amount.
 
-![Demo della CLI del Gestore delle Spese](docs/assets/cli-demo.svg)
+## Usage example
+
+![Household Expense Manager CLI demo](docs/assets/cli-demo.svg)
 
 <details>
-<summary>Trascrizione testuale della sessione</summary>
+<summary>Text transcript of the session</summary>
 
 ```text
 $ gestore-spese
@@ -48,61 +52,61 @@ Data: 2025-05, Importo: 830.41
 
 </details>
 
-## Requisiti
+## Requirements
 
 - Python **>= 3.10**
-- Nessuna dipendenza di runtime esterna per il funzionamento di base (solo
-  libreria standard). Il motore di reporting SQL è **opzionale** (extra
-  `analytics`, basato su DuckDB) — vedi [Motore di reporting](#motore-di-reporting-in-memory-vs-sql).
+- No external runtime dependencies for the core functionality (standard library
+  only). The SQL reporting engine is **optional** (the `analytics` extra, based
+  on DuckDB) — see [Reporting engine](#reporting-engine-in-memory-vs-sql).
 
-## Installazione
+## Installation
 
 ```bash
-# clona il repository, poi:
+# clone the repository, then:
 python -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -e .
 ```
 
-## Avvio
+## Running
 
 ```bash
 gestore-spese
 ```
 
-In alternativa, senza installare il console script:
+Alternatively, without installing the console script:
 
 ```bash
 python -m gestore_spese.interfaces.cli.main
 ```
 
-Le spese vengono salvate nel file `storico_spese.csv` nella cartella corrente.
+Expenses are saved to a `storico_spese.csv` file in the current directory.
 
-## Architettura
+## Architecture
 
-Il codice è organizzato in quattro layer concentrici; le dipendenze puntano
-sempre verso il dominio (Dependency Inversion tramite classi astratte):
+The code is organized into four concentric layers; dependencies always point
+towards the domain (Dependency Inversion through abstract classes):
 
 ```
-interfaces/      CLI (pattern Command) + composition root
-   │  dipende da
-application/     casi d'uso (Aggiungi / ReportMensile / Top10) + DTO
-   │  dipende da
-domain/          entità (Spesa), contratti repository, servizi  ← cuore, nessuna dipendenza
-   ▲  implementato da
-infrastructure/  persistenza CSV (datasource + repository)
+interfaces/      CLI (Command pattern) + composition root
+   │  depends on
+application/     use cases (Add / MonthlyReport / Top10) + DTOs
+   │  depends on
+domain/          entities (Spesa), repository contracts, services  ← core, no dependencies
+   ▲  implemented by
+infrastructure/  CSV persistence (datasource + repository)
 ```
 
-- **`domain`** — la `Spesa` con le sue regole di validazione, i contratti astratti di repository e servizio. Non dipende da nessun altro layer.
-- **`application`** — i casi d'uso che orchestrano il dominio e il DTO del report mensile.
-- **`infrastructure`** — l'implementazione concreta della persistenza su CSV, dietro le astrazioni del dominio.
-- **`interfaces`** — la CLI: ogni operazione è un *Command* (pattern Command → aperto all'estensione, chiuso alla modifica) e `GestoreSpeseCli` fa da *composition root* cablando le dipendenze.
-- **Reporting intercambiabile** — i report di sola lettura passano per la porta `AbstractReportingProvider`, con due implementazioni (Python in-memory di default, DuckDB/SQL opzionale) selezionabili a runtime. Vedi [Motore di reporting](#motore-di-reporting-in-memory-vs-sql).
+- **`domain`** — the `Spesa` entity with its validation rules, plus the abstract repository and service contracts. It depends on no other layer.
+- **`application`** — the use cases that orchestrate the domain, and the monthly report DTO.
+- **`infrastructure`** — the concrete CSV persistence implementation, behind the domain abstractions.
+- **`interfaces`** — the CLI: each operation is a *Command* (Command pattern → open for extension, closed for modification) and `GestoreSpeseCli` acts as the *composition root* wiring the dependencies.
+- **Swappable reporting** — read-only reports go through the `AbstractReportingProvider` port, with two implementations (Python in-memory by default, optional DuckDB/SQL) selectable at runtime. See [Reporting engine](#reporting-engine-in-memory-vs-sql).
 
-Le scelte progettuali (DDD, SOLID, pattern adottati) sono descritte nelle
-docstring dei moduli, consultabili nella [documentazione API](#documentazione).
+The design choices (DDD, SOLID, patterns adopted) are described in the module
+docstrings, available in the [API documentation](#documentation).
 
-## Struttura del progetto
+## Project structure
 
 ```
 src/gestore_spese/
@@ -112,85 +116,84 @@ src/gestore_spese/
 │   └── services/          # AbstractSpesaService, SpesaService
 ├── application/
 │   ├── dtos/              # ReportMensileDto
-│   ├── ports/             # AbstractReportingProvider (porta di reporting)
-│   ├── reporting/         # InMemoryReportingProvider (motore in-memory, default)
+│   ├── ports/             # AbstractReportingProvider (reporting port)
+│   ├── reporting/         # InMemoryReportingProvider (in-memory engine, default)
 │   └── use_cases/         # AbstractUseCase, AggiungiSpesa/ReportMensile/Top10
 ├── infrastructure/
 │   ├── persistence/
 │   │   ├── datasources/   # SpesaDataSourceCsv
 │   │   └── repositories/  # SpesaRepository
-│   └── reporting/         # DuckDbReportingProvider + factory di selezione motore
+│   └── reporting/         # DuckDbReportingProvider + engine selection factory
 └── interfaces/
     └── cli/               # commands/, main.py (GestoreSpeseCli + entry point)
-tests/                     # suite pytest, speculare a src/
-docs/                      # traccia del progetto
+tests/                     # pytest suite, mirroring src/
+docs/                      # project brief
 ```
 
-## Motore di reporting (in-memory vs SQL)
+## Reporting engine (in-memory vs SQL)
 
-I report di sola lettura (*Report Mensile* e *Top 10*) possono essere calcolati
-con due motori intercambiabili dietro la stessa astrazione
-(`AbstractReportingProvider`):
+The read-only reports (*Monthly Report* and *Top 10*) can be computed with two
+interchangeable engines behind the same abstraction (`AbstractReportingProvider`):
 
-- **in-memory (default)** — l'aggregazione avviene in Python; nessuna dipendenza
-  esterna;
-- **DuckDB / SQL** — l'aggregazione viene *spinta* nel motore dati (*push-down*)
-  ed espressa in SQL (`GROUP BY`/`SUM`, `ORDER BY`/`LIMIT`) leggendo
-  direttamente il file CSV.
+- **in-memory (default)** — aggregation happens in Python; no external
+  dependency;
+- **DuckDB / SQL** — aggregation is *pushed down* into the data engine
+  (*push-down*) and expressed in SQL (`GROUP BY`/`SUM`, `ORDER BY`/`LIMIT`),
+  reading the CSV file directly.
 
-> ⚠️ **Onestà intellettuale.** Su un CSV di spese domestiche il volume è minimo:
-> il motore SQL **non** porta vantaggi di performance (anzi, può essere
-> marginalmente più lento per l'overhead del motore). Non è un'ottimizzazione: è
-> una dimostrazione del *pattern* data-engineering del push-down e di come la
-> *Dependency Inversion* permetta di scambiare il motore di calcolo senza toccare
-> i layer superiori. L'output dei due motori è identico.
+> ⚠️ **Intellectual honesty.** On a household-expenses CSV the data volume is
+> tiny: the SQL engine brings **no** performance benefit (it may even be
+> marginally slower due to engine overhead). It is not an optimization: it is a
+> demonstration of the data-engineering *push-down* pattern, and of how
+> *Dependency Inversion* lets you swap the computation engine without touching
+> the upper layers. The output of the two engines is identical.
 
-Per usare il motore SQL, installa l'extra e imposta la variabile d'ambiente:
+To use the SQL engine, install the extra and set the environment variable:
 
 ```bash
-pip install -e ".[analytics]"            # aggiunge duckdb
+pip install -e ".[analytics]"            # adds duckdb
 GESTORE_SPESE_ENGINE=duckdb gestore-spese
 ```
 
-Senza l'extra (o con la variabile non impostata) si usa il motore in-memory. Se
-richiedi `duckdb` ma l'extra non è installato, l'app avvisa e ricade
-automaticamente sull'in-memory.
+Without the extra (or with the variable unset) the in-memory engine is used. If
+you request `duckdb` but the extra is not installed, the app warns and falls
+back automatically to in-memory.
 
-## Sviluppo
+## Development
 
-Installa le dipendenze di sviluppo ed esegui i controlli di qualità:
+Install the development dependencies and run the quality checks:
 
 ```bash
 pip install -e ".[dev]"
 
 ruff check .             # lint
-ruff format --check .    # formattazione
-mypy src                 # type checking statico (strict)
-pytest                   # test + coverage (soglia 90%)
+ruff format --check .    # formatting
+mypy src                 # static type checking (strict)
+pytest                   # tests + coverage (90% threshold)
 ```
 
-Gli stessi controlli girano in **CI** su GitHub Actions per Python 3.10, 3.11 e 3.12.
+The same checks run in **CI** on GitHub Actions for Python 3.10, 3.11 and 3.12.
 
-## Documentazione
+## Documentation
 
-La documentazione API è generata da Sphinx (dalle docstring reStructuredText) ed è
-pubblicata su **GitHub Pages**:
+The API documentation is generated by Sphinx (from the reStructuredText
+docstrings) and published on **GitHub Pages**:
 
 🔗 https://profession-ai-data-engineering-master.github.io/profession_ai_data_engineering_progetto1/
 
-Per generarla in locale:
+To build it locally:
 
 ```bash
 pip install -e ".[dev]"
 sphinx-build -b html docs docs/_build/html
-# apri docs/_build/html/index.html
+# open docs/_build/html/index.html
 ```
 
-## Contribuire
+## Contributing
 
-Le linee guida per lo sviluppo sono in [CONTRIBUTING.md](CONTRIBUTING.md); le
-modifiche rilevanti sono tracciate nel [CHANGELOG.md](CHANGELOG.md).
+Development guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md); notable changes
+are tracked in [CHANGELOG.md](CHANGELOG.md).
 
-## Licenza
+## License
 
-Distribuito con licenza [MIT](LICENSE).
+Distributed under the [MIT](LICENSE) license.
