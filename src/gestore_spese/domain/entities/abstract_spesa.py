@@ -1,4 +1,4 @@
-"""Contratto astratto dell'entita' di dominio Spesa."""
+"""Contratto astratto dell'entità di dominio Spesa."""
 
 from __future__ import annotations
 
@@ -7,7 +7,7 @@ from datetime import datetime
 
 
 class AbstractSpesa(ABC):
-    """Definisce i metodi che ogni entita' di tipo Spesa deve implementare."""
+    """Definisce i metodi che ogni entità di tipo Spesa deve implementare."""
 
     @property
     @abstractmethod

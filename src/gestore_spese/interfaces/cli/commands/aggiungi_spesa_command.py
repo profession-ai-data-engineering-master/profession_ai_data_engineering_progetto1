@@ -19,7 +19,7 @@ class AggiungiSpesaCommand(AbstractCommand):
         self._use_case = use_case
 
     def _gestisci_input(self) -> AbstractSpesa:
-        """Chiede i dati della spesa all'utente e costruisce l'entita'.
+        """Chiede i dati della spesa all'utente e costruisce l'entità.
 
         :return: la nuova spesa costruita dall'input
         :rtype: AbstractSpesa

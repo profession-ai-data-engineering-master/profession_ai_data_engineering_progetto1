@@ -77,7 +77,7 @@ class TestReportMensileDto(unittest.TestCase):
         self.assertNotEqual(self._dto, "non un dto")
 
     def test_hashable(self):
-        """Il DTO e' hashable e coerente con __eq__."""
+        """Il DTO è hashable e coerente con __eq__."""
         gemello = ReportMensileDto(self._data, self._importo)
         self.assertEqual(hash(self._dto), hash(gemello))
         self.assertIn(self._dto, {gemello})

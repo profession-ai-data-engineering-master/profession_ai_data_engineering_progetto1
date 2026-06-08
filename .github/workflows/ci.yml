@@ -47,7 +47,7 @@ jobs:
         run: pytest
 
       # Upload della coverage su Codecov da un solo job della matrice
-      # (evita upload duplicati). Token richiesto perche' il branch e' protetto.
+      # (evita upload duplicati). Token richiesto perché il branch è protetto.
       - name: Upload coverage su Codecov
         if: matrix.python-version == '3.12'
         uses: codecov/codecov-action@v5
