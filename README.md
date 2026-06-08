@@ -186,6 +186,11 @@ sphinx-build -b html docs docs/_build/html
 # apri docs/_build/html/index.html
 ```
 
+## Contribuire
+
+Le linee guida per lo sviluppo sono in [CONTRIBUTING.md](CONTRIBUTING.md); le
+modifiche rilevanti sono tracciate nel [CHANGELOG.md](CHANGELOG.md).
+
 ## Licenza
 
 Distribuito con licenza [MIT](LICENSE).
