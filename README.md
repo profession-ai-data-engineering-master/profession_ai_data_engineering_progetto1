@@ -194,6 +194,10 @@ sphinx-build -b html docs docs/_build/html
 Development guidelines are in [CONTRIBUTING.md](CONTRIBUTING.md); notable changes
 are tracked in [CHANGELOG.md](CHANGELOG.md).
 
+## Author
+
+**Federico Vita** — [github.com/fedevita](https://github.com/fedevita)
+
 ## License
 
 Distributed under the [MIT](LICENSE) license.
