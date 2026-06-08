@@ -193,6 +193,10 @@ sphinx-build -b html docs docs/_build/html
 Le linee guida per lo sviluppo sono in [CONTRIBUTING.md](CONTRIBUTING.md); le
 modifiche rilevanti sono tracciate nel [CHANGELOG.md](CHANGELOG.md).
 
+## Autore
+
+**Federico Vita** — [github.com/fedevita](https://github.com/fedevita)
+
 ## Licenza
 
 Distribuito con licenza [MIT](LICENSE).
