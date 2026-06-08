@@ -26,6 +26,18 @@ class SpesaDataSourceCsv(AbstractSpesaDataSource):
     def __init__(self, filepath: str = "storico_spese.csv") -> None:
         self._filepath = filepath
 
+    @property
+    def filepath(self) -> str:
+        """Ritorna il percorso del file CSV usato dalla sorgente.
+
+        Utile per far leggere la stessa sorgente a motori alternativi (es. il
+        provider di reporting DuckDB).
+
+        :return: percorso del file CSV
+        :rtype: str
+        """
+        return self._filepath
+
     def _verifica_inizializzazione_sorgente(self) -> bool:
         """Indica se il file esiste ed è già inizializzato (non vuoto).
 
