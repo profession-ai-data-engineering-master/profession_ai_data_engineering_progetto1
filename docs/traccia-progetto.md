@@ -1,8 +1,7 @@
 # Traccia del Progetto - Gestore delle Spese Domestiche
 
 > Questo documento riporta la specifica originale dell'assignment del master.
-> La documentazione operativa del progetto si trova nel [README](../README.md);
-> le scelte progettuali sono descritte nel notebook in [`proto/`](../proto/).
+> La documentazione operativa del progetto si trova nel [README](../README.md).
 
 ## Contesto del Progetto
 In un'epoca in cui il controllo delle spese personali e familiari è diventato cruciale per una gestione finanziaria sostenibile, un'applicazione semplice ma efficace può rappresentare un importante valore aggiunto per i consumatori. Il progetto di un gestore delle spese domestiche mira a fornire uno strumento utile e immediato per il monitoraggio delle transazioni economiche quotidiane, con un'interfaccia utente chiara e funzionale.
