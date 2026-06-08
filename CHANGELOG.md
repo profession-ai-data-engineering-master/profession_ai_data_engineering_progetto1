@@ -7,6 +7,11 @@ e il progetto aderisce al [Versionamento Semantico](https://semver.org/lang/it/)
 
 ## [Non rilasciato]
 
+### Aggiunto
+
+- README disponibile in inglese (`README.md`, default) e italiano
+  (`README.it.md`), con link reciproci.
+
 ## [0.1.0] - 2026-06-08
 
 ### Aggiunto
